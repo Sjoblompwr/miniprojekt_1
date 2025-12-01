@@ -19,8 +19,8 @@ public class TestApp
     {
     List<Sorter<ScanPoint>> sorters = new LinkedList<Sorter<ScanPoint>>();
     // Add your sorters here ...
-    sorters.add(new algorithms.MockUpSorter<ScanPoint>()); // t.ex
-    //sorter.add(new algorithms.BubbleSort<ScanPoint>()); etc
+   // sorters.add(new algorithms.MockUpSorter<ScanPoint>()); // t.ex
+    sorters.add(new algorithms.BubbleSorter<ScanPoint>()); 
 
     SwingUtilities.invokeLater(() -> new PointCloudRenderGUI(sorters));
     }

@@ -71,6 +71,7 @@ public class PointCloudRenderGUI extends JFrame
     JMenuBar menuBar = new JMenuBar();
     menuBar.add(menu);
     setJMenuBar(menuBar);
+    
     }
 
   private void importScanningData()
