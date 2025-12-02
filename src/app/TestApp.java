@@ -1,5 +1,6 @@
 package app;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,9 +18,8 @@ public class TestApp
 
   public void startApp()
     {
-    List<Sorter<ScanPoint>> sorters = new LinkedList<Sorter<ScanPoint>>();
-    // Add your sorters here ...
-   // sorters.add(new algorithms.MockUpSorter<ScanPoint>()); // t.ex
+    List<Sorter<ScanPoint>> sorters = new ArrayList<Sorter<ScanPoint>>();
+    sorters.add(new algorithms.QuickSorter<ScanPoint>());
     sorters.add(new algorithms.BubbleSorter<ScanPoint>()); 
 
     SwingUtilities.invokeLater(() -> new PointCloudRenderGUI(sorters));
