@@ -19,8 +19,10 @@ public class TestApp
   public void startApp()
     {
     List<Sorter<ScanPoint>> sorters = new ArrayList<Sorter<ScanPoint>>();
+    sorters.add(new algorithms.JavaBuitInSorter<ScanPoint>());
     sorters.add(new algorithms.QuickSorter<ScanPoint>());
     sorters.add(new algorithms.BubbleSorter<ScanPoint>()); 
+  
 
     SwingUtilities.invokeLater(() -> new PointCloudRenderGUI(sorters));
     }

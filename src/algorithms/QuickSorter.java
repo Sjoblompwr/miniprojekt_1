@@ -82,3 +82,32 @@ public class QuickSorter <T extends Comparable< ? super T>> implements Sorter<T>
     }
     
 }
+
+
+// Chats version of quicksort check for changes this should be "in place quicksort"
+// public void sort(List<T> list) {
+//     quicksort(list, 0, list.size() - 1);
+// }
+
+// private void quicksort(List<T> list, int low, int high) {
+//     if (low < high) {
+//         int pivotIndex = partition(list, low, high);
+//         quicksort(list, low, pivotIndex - 1);
+//         quicksort(list, pivotIndex + 1, high);
+//     }
+// }
+
+// private int partition(List<T> list, int low, int high) {
+//     T pivot = list.get(high);
+//     int i = low - 1;
+
+//     for (int j = low; j < high; j++) {
+//         if (list.get(j).compareTo(pivot) <= 0) {
+//             i++;
+//             Collections.swap(list, i, j);
+//         }
+//     }
+
+//     Collections.swap(list, i + 1, high);
+//     return i + 1;
+// }

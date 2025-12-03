@@ -54,8 +54,36 @@ public class PointCloudRenderGUI extends JFrame
     jTabbedPane.add("Point cloud rendering", scroll);
     add(jTabbedPane);
     createMenue();
+    importScanningDataAutomatically();
     setVisible(true);
     }
+
+private void importScanningDataAutomatically() {
+    AscFileHandler csvHandler = new AscFileHandler();
+
+    // Choose the directory to scan
+File folder = new File(System.getProperty("user.dir"));
+
+    // Filter .asc files
+    File[] ascFiles = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".asc"));
+
+    if (ascFiles == null) return;
+
+    for (File file : ascFiles) {
+        // Optional: Only load files matching a pattern
+        // if (!file.getName().matches("yourPatternHere")) continue;
+
+        Scanning scanning = new Scanning(
+                file.getName(),
+                csvHandler.readCSV(file.getAbsolutePath())
+        );
+
+        scanningList.add(scanning);
+    }
+
+    pointCloudDataView.updateList(scanningList);
+}
+
 
   private void quit()
     {
