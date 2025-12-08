@@ -22,7 +22,7 @@ public class TestApp
     sorters.add(new algorithms.JavaBuitInSorter<ScanPoint>());
     sorters.add(new algorithms.QuickSorter<ScanPoint>());
     sorters.add(new algorithms.BubbleSorter<ScanPoint>()); 
-  
+    sorters.add(new algorithms.InsertionSorter<ScanPoint>());
 
     SwingUtilities.invokeLater(() -> new PointCloudRenderGUI(sorters));
     }
