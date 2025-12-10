@@ -1,7 +1,5 @@
 package algorithms;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class QuickSorterInPlace <T extends Comparable< ? super T>> implements Sorter<T>{
@@ -13,31 +11,36 @@ public class QuickSorterInPlace <T extends Comparable< ? super T>> implements So
     }
 
     private void QuickSort(List<T> list, int low, int high){
-        T first;
-        T last;
-        T middle;
-        T pivot;
+        if(low >= high || low < 0)
+            return;
+
+        int p = partition(list, low, high);
+        QuickSort(list, low, p -1);
+        QuickSort(list, p + 1, high);
+
+
+    }
+    private int partition(List<T> list,int low, int high){
+        T first,middle,last,pivot;
         int pivotIndex;
         if(list.size() > 2){
-            first = list.get(0);
-            middle = list.get(list.size() / 2);
-            last = list.get(list.size() - 1);
+            int mid = low + (high - low) / 2;
+            first = list.get(low);
+            middle = list.get(mid);
+            last = list.get(high);
 
             if(first.compareTo(middle) >= 0 && first.compareTo(last) <= 0 || first.compareTo(middle) <= 0 && first.compareTo(last) >= 0  ){     
                 pivot = first;
-                pivotIndex = 0;
+                pivotIndex = low;
             }
             else if(middle.compareTo(first) >= 0 && middle.compareTo(last) <= 0 || middle.compareTo(first) <= 0 && middle.compareTo(last) >= 0 ){
                 pivot = middle;
-                pivotIndex = list.size() / 2;
+                pivotIndex = mid;
             }
             else{
                 pivot = last;
-                pivotIndex = list.size() -1;
+                pivotIndex = high;
             }
-
-
-
         }
         else if(list.size() == 2){
             if(list.get(0).compareTo(list.get(1)) <= 0){
@@ -49,14 +52,24 @@ public class QuickSorterInPlace <T extends Comparable< ? super T>> implements So
                 pivotIndex = 0;
             }
         }
-        else if (list.size() == 1){
-            return;
-        }
         else
-            return;    
+            return low;
+        int i = low;
+        for(int j = low;j < high;j++){
+            if(list.get(j).compareTo(pivot) >= 0){
+                swap(list,list.get(i),list.get(j));
+                i++;
+            }
+        }
+        return i;
+    }
 
-        
-    
+    private void swap(List<T> list, T a, T b){
+        int indexA = list.indexOf(a);
+        int indexB = list.indexOf(b);
+        T temp = a;
+        list.set(indexA, b);
+        list.set(indexB, temp);
     }
 
     @Override
