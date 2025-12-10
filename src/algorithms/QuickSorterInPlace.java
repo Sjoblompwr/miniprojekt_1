@@ -1,20 +1,18 @@
 package algorithms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class QuickSorter <T extends Comparable< ? super T>> implements Sorter<T>{
+public class QuickSorterInPlace <T extends Comparable< ? super T>> implements Sorter<T>{
 
     @Override
     public void sort(List<T> list) {
-        List<T> sorted = QuickSort(list);
-        list = sorted;
+        if(list.size() > 1)
+            QuickSort(list, 0, list.size() -1);
     }
 
-    private List<T> QuickSort(List<T> list){
-        List<T> leftList = new ArrayList<T>();
-        List<T> rightList = new ArrayList<T>();
-        List<T> sortedList = new ArrayList<T>();
+    private void QuickSort(List<T> list, int low, int high){
         T first;
         T last;
         T middle;
@@ -52,25 +50,13 @@ public class QuickSorter <T extends Comparable< ? super T>> implements Sorter<T>
             }
         }
         else if (list.size() == 1){
-            return List.of(list.get(0));
+            return;
         }
         else
-            return sortedList;    
-        for(int i = 0;i<list.size();i++){
-            // if smaller than pivot left-list
-            if(i == pivotIndex)
-                continue;
-            if(list.get(i).compareTo(pivot) < 0)
-                leftList.add(list.get(i));
-            else
-                rightList.add(list.get(i));
-        }
+            return;    
 
-        sortedList.addAll(QuickSort(rightList));
-        sortedList.add(pivot);
-        sortedList.addAll(QuickSort(leftList));
-
-        return sortedList;
+        
+    
     }
 
     @Override
@@ -79,5 +65,4 @@ public class QuickSorter <T extends Comparable< ? super T>> implements Sorter<T>
     }
     
 }
-
 
